@@ -1,0 +1,17 @@
+class Solution(object):
+    def replaceWords(self, dictionary, sentence):
+        """
+        :type dictionary: List[str]
+        :type sentence: str
+        :rtype: str
+        """
+        words = sentence.split()
+        dictionary.sort()
+
+        for i in range(len(words)):
+            for j in dictionary:
+                if words[i].startswith(j):
+                    words[i] = j
+                    break  
+
+        return " ".join(words)
