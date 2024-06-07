@@ -1,0 +1,23 @@
+class Solution(object):
+    def isNStraightHand(self, hand, groupSize):
+        card_count = {}
+
+        for card in hand:
+            if card in card_count:
+                card_count[card] += 1
+            else:
+                card_count[card] = 1
+
+        unique_cards = sorted(set(hand))
+
+        for card in unique_cards:
+            count = card_count[card]
+            if count > 0:
+
+                for i in range(groupSize):
+                    next_card = card + i
+                    if next_card not in card_count or card_count[next_card] < count:
+                        return False
+                    card_count[next_card] -= count
+                    
+        return True
